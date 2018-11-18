@@ -2,6 +2,7 @@ import 'babel-polyfill'
 import axios from '../packs/axios/axios-space'
 
 export default class SwapiService {
+  _imageBase = 'https://starwars-visualguide.com/assets/img'
 
   getResource = async (url) => {
     const res = await axios.get(url);
@@ -41,6 +42,20 @@ export default class SwapiService {
     const starship = await this.getResource(`/starships/${id}`)
     return this._transformStarship(starship.data)
   }
+  
+  getPersonImage = ({ id }) => {
+    console.log('ID', id)
+    return `${this._imageBase}/characters/${id}.jpg`
+  };
+
+  getStarshipImage = ({ id }) => {
+    return `${this._imageBase}/starships/${id}.jpg`
+  };
+
+  getPlanetImage = ({ id }) => {
+    return `${this._imageBase}/planets/${id}.jpg`
+  };
+
  
   _transformPlanet(planet) {
     return {
