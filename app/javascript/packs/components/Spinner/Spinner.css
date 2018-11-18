@@ -1,0 +1,62 @@
+@keyframes lds-ball {
+  0%, 100% {
+    animation-timing-function: cubic-bezier(0.45, 0, 0.9, 0.55);
+  }
+  0% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+  50% {
+    -webkit-transform: translate(0, 108px);
+    transform: translate(0, 108px);
+    animation-timing-function: cubic-bezier(0, 0.45, 0.55, 0.9);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+}
+@-webkit-keyframes lds-ball {
+  0%, 100% {
+    animation-timing-function: cubic-bezier(0.45, 0, 0.9, 0.55);
+  }
+  0% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+  50% {
+    -webkit-transform: translate(0, 108px);
+    transform: translate(0, 108px);
+    animation-timing-function: cubic-bezier(0, 0.45, 0.55, 0.9);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+    transform: translate(0, 0);
+  }
+}
+.lds-ball {
+  position: relative;
+}
+.lds-ball div {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #51CACC;
+  left: 74px;
+  top: 20px;
+  -webkit-animation: lds-ball 1s linear infinite;
+  animation: lds-ball 1s linear infinite;
+}
+.lds-ball {
+  width: 101px !important;
+  height: 101px !important;
+  -webkit-transform: translate(-50.5px, -50.5px) scale(0.505) translate(50.5px, 50.5px);
+  transform: translate(-50.5px, -50.5px) scale(0.505) translate(50.5px, 50.5px);
+}
+.align-center {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
