@@ -5,7 +5,8 @@ import ItemList from '../Item-list/Item-list';
 import PeoplePage from '../People-page/People-page'
 import ErrorIndicator from '../Error-indicator/Error-indicator'
 import SwapiService from '../../../services/swapi-service'
-import PersonDetails from '../Person-details/Person-details'
+import ItemDetails from '../Item-details/Item-details'
+import Row from '../Row/Row'
 import './App.scss'
 
 class App extends Component {
@@ -15,9 +16,9 @@ class App extends Component {
     hasError: false
   }
 
-  onPersonSelected = (id) => {
+  onItemSelected = (id) => {
     this.setState({
-      selectedPerson: id,
+      selectedItem: id,
       hasError: false
     });
   };
@@ -26,29 +27,44 @@ class App extends Component {
     this.setState({ hasError: true });
   }
 
+
   render () { 
     if (this.state.hasError) {
       return <ErrorIndicator />
     }
 
+    const { getPerson, getStarship, getPersonImage, getStarshipImage} = this.swapiService
+    const personDetails = (
+      <ItemDetails itemId={11} getData={getPerson} getImageUrl={getPersonImage} />
+    )
+
+    const starshipDetails = (
+      <ItemDetails itemId={10} getData={getStarship} getImageUrl={getStarshipImage} />
+    )
+
     return (
       <div>
         <Header />
         <RandomPlanet />
+
+        <Row left={personDetails} right={starshipDetails} />
+
+
+
         <PeoplePage />
 
         <div className="row mb2">
           <div className="col-md-6">
             <ItemList
-              onItemSelected={this.onPersonSelected}
+              onItemSelected={this.onItemSelected}
               getData={this.swapiService.getAllPlanets}
               >
               {({ name, population }) => `${name}, population: ${population}`}
-              </ItemList>
+            </ItemList>
 
           </div>
           <div className="col-md-6">
-            <PersonDetails personId={this.state.selectedPerson} />
+            <ItemDetails itemId={this.state.selectedItem} />
           </div>
         </div>
       </div>
