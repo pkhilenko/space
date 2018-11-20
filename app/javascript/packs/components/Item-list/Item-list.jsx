@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './Item-list.scss';
 import SwapiService from '../../../services/swapi-service'
 import Spinner from '../Spinner/Spinner'
-import ErrorIndicator from '../Error-indicator/Error-indicator'
 
 export default class ItemList extends Component {
   swapiService = new SwapiService();
