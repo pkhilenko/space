@@ -5,7 +5,7 @@ import ItemList from '../Item-list/Item-list';
 import PeoplePage from '../People-page/People-page'
 import ErrorIndicator from '../Error-indicator/Error-indicator'
 import SwapiService from '../../../services/swapi-service'
-import ItemDetails from '../Item-details/Item-details'
+import ItemDetails, { Record } from '../Item-details/Item-details'
 import Row from '../Row/Row'
 import './App.scss'
 
@@ -35,11 +35,17 @@ class App extends Component {
 
     const { getPerson, getStarship, getPersonImage, getStarshipImage} = this.swapiService
     const personDetails = (
-      <ItemDetails itemId={11} getData={getPerson} getImageUrl={getPersonImage} />
+      <ItemDetails itemId={11} getData={getPerson} getImageUrl={getPersonImage} >
+        <Record field='gender' label='Gender' />
+        <Record field='eyeColor' label='Eye Color' />
+      </ItemDetails>
     )
 
     const starshipDetails = (
-      <ItemDetails itemId={10} getData={getStarship} getImageUrl={getStarshipImage} />
+      <ItemDetails itemId={10} getData={getStarship} getImageUrl={getStarshipImage} >
+        <Record field="model" label="Model" />
+        <Record field="length" label="Length" />
+      </ItemDetails>
     )
 
     return (
