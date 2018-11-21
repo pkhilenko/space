@@ -8,7 +8,7 @@ module Space
       resource :people do
         desc 'Return list of people'
         get do
-          people = Person.all
+          people = Person.all.first(6)
           present people, with: Space::Entities::Person
         end
 

@@ -8,7 +8,7 @@ module Space
       resource :planets do
         desc 'Return list of planets'
         get do
-          planets = Planet.all
+          planets = Planet.all.first(6)
           present planets, with: Space::Entities::Planet
         end
 
