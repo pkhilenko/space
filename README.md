@@ -5,6 +5,7 @@
   $ rails g model Person name gender birth_day eye_color
   $ yarn add node-sass is_js babel-polyfill axios react-router-dom
 ```
+ 
 gem 'foreman'  
 gem 'grape'  
 gem 'grape-entity'  
