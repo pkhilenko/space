@@ -6,8 +6,6 @@ import Row from '../Row/Row'
 import ErrorBoundry from '../Error-boundry/Error-boundry'
 import './People-page.scss'
 
-
-
 export default class PeoplePage extends Component {
   swapiService = new SwapiService()
 
@@ -34,7 +32,7 @@ export default class PeoplePage extends Component {
       <ErrorBoundry >
         <PersonDetails personId={this.state.selectedPerson} />
       </ErrorBoundry>
-      
+ 
     return (
       <Row left={itemList} right={personDetails} />
     );
