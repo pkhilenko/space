@@ -45,7 +45,7 @@ export default class PersonDetails extends Component {
     }
 
     const { id, name, gender,
-      birthDay, eyeColor } = this.state.person;
+      birthYear, eyeColor } = this.state.person;
 
     return (
       <div className="Person-details card">
@@ -62,7 +62,7 @@ export default class PersonDetails extends Component {
             </li>
             <li className="list-group-item">
               <span className="term">Birth Day</span>
-              <span>{birthDay}</span>
+              <span>{birthYear}</span>
             </li>
             <li className="list-group-item">
               <span className="term">Eye Color</span>
