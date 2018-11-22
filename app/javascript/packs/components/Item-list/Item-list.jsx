@@ -21,7 +21,7 @@ export default class ItemList extends Component {
   renderItems(arr) {
     return arr.map((item) => {
       const { id } = item
-      const label = this.props.renderItem(item)
+      const label = this.props.children(item)
 
       return (
         <li className="list-group-item"
@@ -38,7 +38,9 @@ export default class ItemList extends Component {
     if (!itemList) {
       return <Spinner />;
     }
+
     const items = this.renderItems(itemList);
+    
     return (
       <ul className="Item-list list-group">
           {items}
