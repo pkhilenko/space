@@ -1,79 +1,82 @@
 import React, { Component } from 'react'
-import Header from '../Header/Header';
-import RandomPlanet from '../Random-planet/Random-planet';
-import ItemList from '../Item-list/Item-list';
-import PeoplePage from '../People-page/People-page'
-import ErrorIndicator from '../Error-indicator/Error-indicator'
+import Header from '../Header/Header'
 import SwapiService from '../../../services/swapi-service'
 import ItemDetails, { Record } from '../Item-details/Item-details'
+import ErrorBoundry from '../Error-boundry/Error-boundry.jsx'
 import Row from '../Row/Row'
 import './App.scss'
 
+import {
+  PersonDetails,
+  PlanetDetails,
+  StarshipDetails,
+  PersonList,
+  PlanetList,
+  StarshipList
+} from '../sw-components'
+
+
 class App extends Component {
   swapiService = new SwapiService()
-
-  state = {
-    hasError: false
-  }
-
-  onItemSelected = (id) => {
-    this.setState({
-      selectedItem: id,
-      hasError: false
-    });
-  };
-
-  componentDidCatch() {
-    this.setState({ hasError: true });
-  }
-
-
+ 
   render () { 
-    if (this.state.hasError) {
-      return <ErrorIndicator />
-    }
+    const { getPerson,
+        getStarship,
+        getPersonImage,
+        getStarshipImage,
+        getAllPeople,
+        getAllPlanets } = this.swapiService
 
-    const { getPerson, getStarship, getPersonImage, getStarshipImage} = this.swapiService
     const personDetails = (
-      <ItemDetails itemId={11} getData={getPerson} getImageUrl={getPersonImage} >
-        <Record field='gender' label='Gender' />
-        <Record field='eyeColor' label='Eye Color' />
+      <ItemDetails
+        itemId={15}
+        getData={getPerson}
+        getImageUrl={getPersonImage} >
+
+        <Record field="gender" label="Gender" />
+        <Record field="eyeColor" label="Eye Color" />
+
       </ItemDetails>
-    )
+    );
 
     const starshipDetails = (
-      <ItemDetails itemId={10} getData={getStarship} getImageUrl={getStarshipImage} >
+      <ItemDetails
+        itemId={5}
+        getData={getStarship}
+        getImageUrl={getStarshipImage}>
+
         <Record field="model" label="Model" />
         <Record field="length" label="Length" />
+        <Record field="crew" label="Crew" />
       </ItemDetails>
-    )
+    );
+
 
     return (
-      <div>
-        <Header />
-        <RandomPlanet />
+      <ErrorBoundry>
+        <div className="App">
+          <Header />
 
-        <Row left={personDetails} right={starshipDetails} />
+          <PersonDetails itemId={11} />
 
+          <PlanetDetails itemId={5} />
 
+          <StarshipDetails itemId={9} />
 
-        <PeoplePage />
+          <PersonList />
 
-        <div className="row mb2">
-          <div className="col-md-6">
-            <ItemList
-              onItemSelected={this.onItemSelected}
-              getData={this.swapiService.getAllPlanets}
-              >
-              {({ name, population }) => `${name}, population: ${population}`}
-            </ItemList>
+          <hr color='#fff' />
 
-          </div>
-          <div className="col-md-6">
-            <ItemDetails itemId={this.state.selectedItem} />
-          </div>
+          <StarshipList />
+
+          <hr color='#fff' />
+
+          <PlanetList />
+
+          <Row left={personDetails} right={starshipDetails} />
+
         </div>
-      </div>
+      </ErrorBoundry>
     )
   }
 }
