@@ -1,6 +1,4 @@
 import React from 'react';
-import withData from '../Hoc-helpers/With-data'
-import SwapiService from '../../../services/swapi-service'
 import './Item-list.scss';
 
 const ItemList = (props) => {
