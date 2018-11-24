@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import Header from '../Header/Header'
 import SwapiService from '../../../services/swapi-service'
 import ItemDetails, { Record } from '../Item-details/Item-details'
-import ErrorBoundry from '../Error-boundry/Error-boundry'
- 
+import ErrorBoundry from '../Error-boundry/Error-boundry' 
 import Row from '../Row/Row'
+import { SwapiServiceProvider } from '../swapi-service-context'
 import './App.scss'
 
 import {
@@ -56,28 +56,30 @@ class App extends Component {
 
     return (
       <ErrorBoundry>
-        <div className="App">
-          <Header />
+        <SwapiServiceProvider value={this.swapiService} >
+          <div className="App">
+            <Header />
 
-          <PersonDetails itemId={11} />
+            <PersonDetails itemId={11} />
 
-          <PlanetDetails itemId={5} />
+            <PlanetDetails itemId={5} />
 
-          <StarshipDetails itemId={9} />
+            <StarshipDetails itemId={9} />
 
-          <PersonList />
+            <PersonList />
 
-          <hr color='#fff' />
+            <hr color='#fff' />
 
-          <StarshipList />
+            <StarshipList />
 
-          <hr color='#fff' />
+            <hr color='#fff' />
 
-          <PlanetList />
+            <PlanetList />
 
-          <Row left={personDetails} right={starshipDetails} />
+            <Row left={personDetails} right={starshipDetails} />
 
-        </div>
+          </div>
+        </SwapiServiceProvider >
       </ErrorBoundry>
     )
   }
