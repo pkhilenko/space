@@ -8,7 +8,7 @@ module Space
       resource :starships do
         desc 'Return list of planets'
         get do
-          starships = Starship.all.first(6)
+          starships = Starship.all.last(6)
           present starships, with: Space::Entities::Starship
         end
 
