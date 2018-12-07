@@ -30,3 +30,4 @@ end
 gem 'grape'
 gem 'grape-entity'
 gem 'grape_on_rails_routes'
+gem 'rack-cors', :require => 'rack/cors'
