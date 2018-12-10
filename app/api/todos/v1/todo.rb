@@ -16,7 +16,7 @@ module Todos
         route_param :id do
           get do
            todo = TodoDatum.find(params[:id])
-           present todo
+           present todo, with: Todos::Entities::Todo
           end
         end
 
@@ -30,6 +30,33 @@ module Todos
         post do
           todo = TodoDatum.create(params[:todos])
           present todo
+        end
+
+        desc 'Delete todo'
+        route_param :id do
+          delete do
+            TodoDatum.find(params[:id]).destroy
+          end
+        end
+      end
+
+      resource :tdone do
+        route_param :id do
+          desc 'toggle done'
+          put do 
+            todo = TodoDatum.find(params[:id])
+            todo.update(done: !todo.done)
+          end
+        end
+      end
+
+      resource :tinportant do
+        route_param :id do
+          desc 'toggle important'
+          put do 
+            todo = TodoDatum.find(params[:id])
+            todo.update(important: !todo.important)
+          end
         end
       end
     end
